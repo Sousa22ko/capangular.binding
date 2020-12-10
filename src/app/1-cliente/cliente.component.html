@@ -1,29 +1,26 @@
-<div [hidden]="hidden">
-    <form (ngSubmit)="next()" #clientForm="ngForm">
-        <div class="container" >
-            <div class="row">
-                <span style="font-weight: bold; align-content: center;">Cadastro de cliente</span>
+<form (ngSubmit)="onSubmit(clientForm)" #clientForm="ngForm">
+    <div class="container" >
+        <h1>Cadastro de Cliente</h1>
+        <div class="row">
+            <div class="col-12">
+                <!-- <mat-form-field>
+                    <mat-label>Nome</mat-label>
+                    <input matInput required [(ngModel)]="cliente.nome" placeholder="Nome">
+                </mat-form-field> -->
+                <input placeholder="Nome" type="text" class="form-control" id="name" required [(ngModel)]="cliente.nome" name="nome" #name="ngModel">
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <label for="name">Nome</label>
-                    <input type="text" class="form-control" id="name" required [(ngModel)]="cliente.nome" name="name" #name="ngModel">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <label for="name">CPF</label>
-                    <input type="text" maxlength="14" class="form-control" id="cpf" required [(ngModel)]="cliente.cpf" name="cpf" #name="ngModel">
-                </div>
-                <div class="col-6">
-                    <label for="name">Email</label>
-                    <input type="text" class="form-control" id="email" required [(ngModel)]="cliente.email" name="email" #name="ngModel">
-                </div>
-            </div>
-            <div style="color: red;">{{error}}</div>
-            <button type="button" class="btn btn-default" (click)="next()">Salvar</button>
         </div>
-    </form>
-</div>
-
-<app-endereco [hidden]="!hidden" [cliente]="cliente"></app-endereco>
+        <div class="row">
+            <div class="col-6">
+                <label for="cpf">CPF</label>
+                <input matInput type="text" maxlength="14" class="form-control" id="cpf" required [(ngModel)]="cliente.cpf" name="cpf" #name="ngModel">
+            </div>
+            <div class="col-6">
+                <label for="email">Email</label>
+                <input matInput type="text" class="form-control" id="email" required [(ngModel)]="cliente.email" name="email" #name="ngModel">
+            </div>
+        </div>
+        <div style="color: red;">{{error}}</div>
+        <button mat-raised-button color="primary" type="submit" routerLink="/endereco" routerLinkActive="active">Salvar</button>
+    </div>
+</form>

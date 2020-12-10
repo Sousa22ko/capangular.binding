@@ -1,4 +1,31 @@
+<div class="container" >
+    <h1>Resumo da compra</h1>
+    <button mat-raised-button color="primary" type="button" routerLink="/carrinho" routerLinkActive="active" (click)="onSubmit()">Voltar ao inicio</button>
+    <p>
+        <span style="font-weight: bolder;">Cliente: </span><span>{{ pedido.cliente.nome }}</span><br>
+        <span>{{ ent }}</span>
+    </p>
 
-<span>
-    {{pedido? pedido.valorTotal: ""}}
-</span>
+    <p>
+        <span> {{ pedido.valorTotal | currency:'BRL':true:'1.2-2'}} </span>
+    </p>
+
+    <table border="1">
+        <tr class="table-top">
+            <td>Descrição</td>
+            <td>Categoria</td>
+            <td>Valor</td>
+            <td>Quantidade</td>
+        </tr>
+
+        <tr class="cart-item" *ngFor="let item of pedido.itens">
+            <td>{{ item.produto.descricao }}</td>
+            <td>{{ item.produto.categoria }}</td>
+            <td>{{ item.produto.preco }}</td>
+            <td>
+                <input type="number" [(ngModel)]="item.quantidade" name="quantidade" value="0" min="0">
+            </td>
+        </tr>
+
+    </table>
+</div>

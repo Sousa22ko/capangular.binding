@@ -1,10 +1,10 @@
-import { Cliente } from './Cliente';
-import { Item, IItem } from './Item'
+import { Cliente } from './cliente.modulo';
+import { Item, IItem } from './item.modulo'
 
 
 export class Pedido {
     itens: Array<Item> = new Array<Item>();
-    cliente?: Cliente;
+    cliente: Cliente;
     entrega: boolean;
     imposto = 0.08; // 8%
     taxa_entrega = 0.15; // 15%
@@ -62,6 +62,6 @@ export class Pedido {
 
 export interface IPedido{
     itens: Array<Item>;
-    cliente?: Cliente;
+    cliente: Cliente;
     entrega: boolean;
 }

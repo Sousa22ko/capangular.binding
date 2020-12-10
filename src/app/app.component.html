@@ -1,2 +1,11 @@
-<app-cliente></app-cliente>
-<app-final [pedido]="pedido" [hidden]="hidden"></app-final>
+<mat-toolbar>
+    <span>E-Comerce</span> <br>
+    <button mat-raised color="primary" routerLink="/cliente" (click)="next(0)">Cliente</button>
+    <button mat-raised color="primary" routerLink="/endereco" (click)="next(1)">Endereco</button>
+    <button mat-raised color="primary" routerLink="/carrinho" (click)="next(2)">Produtos</button>
+</mat-toolbar>
+
+<app-cliente *ngIf="step==0" [cliente]="cliente" (next)="next($event)"></app-cliente>
+<app-endereco *ngIf="step==1" [cliente]="cliente" [endereco]="endereco" [pedido]="pedido" (salvar)="salvar($event)" (next)="next($event)"></app-endereco>
+<app-carrinho *ngIf="step==2" [pedido]="pedido" (salvar)="salvar($event)" (next)="next($event)"></app-carrinho>
+<app-final *ngIf="step==3" [pedido]="pedido" (next)="next($event)"></app-final>

@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Endereco } from '../Models/Endereco';
-import { Item } from '../Models/Item';
-import { Pedido } from '../Models/Pedido';
-import { Cliente, ICliente } from '../Models/Cliente'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Endereco } from '../Models/endereco.modulo';
+import { Item } from '../Models/item.modulo';
+import { Pedido } from '../Models/pedido.modulo';
+import { Cliente } from '../Models/cliente.modulo'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-endereco',
@@ -17,10 +18,18 @@ export class EnderecoComponent implements OnInit {
   @Input()
   cliente!:Cliente
 
+  @Input()
+  endereco!: Endereco;
 
-  endereco: Endereco = new Endereco({cep: ""});
+  @Output()
+  next:EventEmitter<any> = new EventEmitter<any>();
 
+  @Output()
+  salvar:EventEmitter<any> = new EventEmitter<any>();
+
+  @Input()
   pedido?: Pedido;
+
   error:string= "";
 
 
@@ -28,16 +37,20 @@ export class EnderecoComponent implements OnInit {
   }
 
   entregar(){
-    this.entrega= true;
+    this.entrega=true;
   }
 
   cancelar(){
-    this.entrega= false;
+    this.entrega=false;
   }
 
-  next(){
-    this.cliente.endereco= this.endereco
-    this.pedido = new Pedido({entrega: this.entrega, itens:new Array<Item>(), cliente: this.cliente})
-    this.hiddenEnd = true;
+  onSubmit(form: NgForm){
+
+    this.cliente.endereco = this.endereco;
+    this.pedido = new Pedido({entrega: this.entrega, itens:new Array<Item>(), cliente: this.cliente});
+    this.salvar.emit(this.pedido);
+    console.log(`pedido ${this.pedido.entrega}`);
+    
+    this.next.emit(2);
   }
 }

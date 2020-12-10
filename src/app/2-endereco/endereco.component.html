@@ -1,39 +1,34 @@
-<div [hidden]="hiddenEnd">
-    <form (ngSubmit)="next()" #endForm="ngForm">
-        <div class="container" >
-            <div class="row">
-                <span style="font-weight: bold; align-content: center;">Endereço de entrega</span>
+<form (ngSubmit)="onSubmit(endForm)" #endForm="ngForm">
+    <div class="container" >
+        <h1>Cadastro de</h1>
+        <div class="row">
+            <div class="col-12">
+                <button mat-raised-button color="primary" type="button" [hidden]="entrega" (click)="entregar()">Deseja serviço de entrega? (+15% no valor final) </button> <br>
+                <button mat-raised-button color="primary" type="button" [hidden]="!entrega" (click)="cancelar()">cancelar </button>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <button type="button" [hidden]="entrega" class="btn btn-default" (click)="entregar()">Deseja serviço de entrega? (+15% no valor final) </button>
-                    <button type="button" [hidden]="!entrega" class="btn btn-default" (click)="cancelar()">cancelar </button>
-                </div>
-            </div>
-            <div class="row" [hidden]="!entrega">
-                <div class="col-6">
-                    <label for="name">Rua</label>
-                    <input type="text" class="form-control" id="rua" required [(ngModel)]="endereco.rua" name="rua" #name="ngModel">
-                </div>
-                <div class="col-6">
-                    <label for="name">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" required [(ngModel)]="endereco.cidade" name="cidade" #name="ngModel">
-                </div>
-            </div>
-            <div class="row" [hidden]="!entrega">
-                <div class="col-6">
-                    <label for="name">Estado</label>
-                    <input type="text" class="form-control" id="estado" required [(ngModel)]="endereco.estado" name="estado" #name="ngModel">
-                </div>
-                <div class="col-6">
-                    <label for="name">CEP</label>
-                    <input type="text" class="form-control" id="cep" required [(ngModel)]="endereco.cep" name="cep" #name="ngModel">
-                </div>
-            </div>
-            <div style="color: red;">{{error}}</div>
-            <button type="button" class="btn btn-default" (click)="next()">Salvar</button>
         </div>
-    </form>
-</div>
-
-<app-carrinho [hidden]="!hiddenEnd" [endereco]="endereco" [cliente]="cliente"></app-carrinho>
+        <div class="row" [hidden]="!entrega">
+            <div class="col-6">
+                <label for="name">Rua</label>
+                <input type="text" class="form-control" id="rua" required [(ngModel)]="endereco.rua" name="rua" #name="ngModel">
+            </div>
+            <div class="col-6">
+                <label for="name">Cidade</label>
+                <input type="text" class="form-control" id="cidade" required [(ngModel)]="endereco.cidade" name="cidade" #name="ngModel">
+            </div>
+        </div>
+        <div class="row" [hidden]="!entrega">
+            <div class="col-6">
+                <label for="name">Estado</label>
+                <input type="text" class="form-control" id="estado" required [(ngModel)]="endereco.estado" name="estado" #name="ngModel">
+            </div>
+            <div class="col-6">
+                <label for="name">CEP</label>
+                <input type="text" class="form-control" id="cep" required [(ngModel)]="endereco.cep" name="cep" #name="ngModel">
+            </div>
+        </div>
+        <div style="color: red;">{{error}}</div>
+        <button mat-raised-button color="primary" type="button" type="submit" routerLink="/carrinho" routerLinkActive="active">Salvar</button>
+        <button mat-raised-button color="primary" type="submit" routerLink="/cliente" routerLinkActive="active">cancelar</button>
+    </div>
+</form>

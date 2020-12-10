@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Cliente } from '../Models/Cliente';
-import { Endereco } from '../Models/Endereco';
-import { Pedido } from '../Models/Pedido';
-import { Produto } from '../Models/Produto';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Cliente } from '../Models/cliente.modulo';
+import { Endereco } from '../Models/endereco.modulo';
+import { Pedido } from '../Models/pedido.modulo';
+import { Produto } from '../Models/Produto.modulo';
 
 @Component({
   selector: 'app-cliente',
@@ -11,7 +12,11 @@ import { Produto } from '../Models/Produto';
 })
 export class ClienteComponent implements OnInit {
 
-  cliente: Cliente = new Cliente({nome:"testestestestests", cpf:"11111111111111", email:"dasdadsadas@qweqweqweqwe"});
+  @Input()
+  cliente!: Cliente;
+  
+  @Output()
+  next:EventEmitter<any> = new EventEmitter<any>();
 
   imposto=0.08;
   transporte=0.15
@@ -21,10 +26,10 @@ export class ClienteComponent implements OnInit {
   hidden:boolean = false;
   error:string="";
 
-  next(){
+  onSubmit(form: NgForm){
     this.error= ""
     if(this.cliente.nome.length > 5 && this.cliente.email.length > 5 && this.cliente.email.includes("@") && this.cliente.cpf.length == 14)
-      this.hidden = true;
+      this.next.emit(1);
     else
       this.error = "campos preenchidos incorretamente";
   }

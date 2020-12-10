@@ -1,4 +1,4 @@
-import { Produto } from './Produto';
+import { Produto } from './Produto.modulo';
 
 export class Item {
     produto: Produto;

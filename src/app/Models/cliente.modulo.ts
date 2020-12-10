@@ -1,4 +1,4 @@
-import { Endereco } from './Endereco';
+import { Endereco } from './endereco.modulo';
 
 export class Cliente {
     nome: string;

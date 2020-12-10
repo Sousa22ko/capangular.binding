@@ -1,4 +1,4 @@
-import { FormaDePagamento } from './FormaDePagamento';
+import { FormaDePagamento } from './formaPagamento.modulo';
 
 export class BoletoBancario extends FormaDePagamento {
 

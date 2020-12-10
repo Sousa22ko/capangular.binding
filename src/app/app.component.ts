@@ -8,11 +8,13 @@ import { Pedido } from './Models/Pedido';
 export class AppComponent{
   title = 'angular-first';
 
-  pedido?:Pedido 
+  pedido:Pedido = new Pedido({entrega:false, itens: []})
+  hidden:boolean = false;
 
   constructor() { } 
 
   salvar(pedido: Pedido){
+    this.hidden=true;
     this.pedido = pedido;    
   }
 }

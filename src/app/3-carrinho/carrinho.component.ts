@@ -25,7 +25,7 @@ export class CarrinhoComponent implements OnInit{
   endereco?:Endereco;
 
   @Output()
-  salvar= new EventEmitter<Pedido>();
+  salvar= new EventEmitter<any>();
 
   produtos:Array<Produto> = new Array<Produto>(); 
 
@@ -146,7 +146,7 @@ export class CarrinhoComponent implements OnInit{
     });
   }
 
-  onSubmit() { 
+  next() { 
     this.listItens = this.itensTotal.filter((Item) => { return Item.quantidade > 0; });
 
 

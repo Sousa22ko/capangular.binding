@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pedido } from '../Models/Pedido';
 
 @Component({
   selector: 'app-final',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./final.component.css']
 })
 export class FinalComponent implements OnInit {
+
+  @Input()
+  pedido!:Pedido
 
   constructor() { }
 
